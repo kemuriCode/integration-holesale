@@ -1,0 +1,111 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+/**
+ * Wszystkie style CSS dla funkcjonalności administracyjnej wtyczki.
+ */
+
+/* Ogólne style */
+.kc-hurtownie-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.kc-hurtownie-card {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.kc-hurtownie-card h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Style dla statusu hurtowni */
+.kc-hurtownie-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.kc-hurtownie-status-active {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.kc-hurtownie-status-inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Style dla zakładek */
+.kc-hurtownie-tab {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* Style dla paska postępu */
+.kc-hurtownie-progress-bar {
+    height: 20px;
+    background-color: #f3f3f3;
+    border-radius: 3px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.kc-hurtownie-progress-bar-inner {
+    height: 100%;
+    background-color: #0073aa;
+    width: 0;
+    transition: width 0.3s ease;
+    animation: progress-animation 2s infinite linear;
+}
+
+@keyframes progress-animation {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 50%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Style dla wyników importu */
+#kc-hurtownie-import-results {
+    margin-top: 20px;
+}
+
+#kc-hurtownie-import-results table {
+    margin-top: 10px;
+}
+
+/* Responsywność */
+@media screen and (max-width: 782px) {
+    .kc-hurtownie-dashboard {
+        flex-direction: column;
+    }
+
+    .kc-hurtownie-card {
+        width: 100%;
+    }
+}

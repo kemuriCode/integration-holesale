@@ -1,0 +1,62 @@
+# 
+# Podstawowe pliki i foldery systemowe
+# 
+.DS_Store
+Thumbs.db
+
+#
+# Pliki i foldery edytorów
+#
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+#
+# Pliki tymczasowe i kopie zapasowe
+#
+*.bak
+*.swp
+*.swp~
+
+#
+# Pliki build, paczek itp.
+#
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+#
+# Pliki kompilowane przez SASS/SCSS
+#
+.sass-cache/
+*.css.map
+*.scssc
+
+#
+# Pliki i foldery Composera
+#
+vendor/
+# Jeśli nie chcesz śledzić blokady wersji wtyczki, odkomentuj poniższą linię:
+# composer.lock
+
+#
+# Dodatkowe pliki konfiguracyjne
+#
+.env
+.env.* 
+
+#
+# Logi
+#
+*.log
+
+#
+# Inne przykłady plików, które możesz chcieć wykluczyć
+#
+# ewentualne paczki instalacyjne, np. .zip z gotową wtyczką
+*.zip
+*.tar.gz
+*.rar
+*.7z

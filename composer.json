@@ -1,0 +1,14 @@
+{
+    "name": "kemuri/kc-hurtownie",
+    "description": "Wtyczka do integracji z hurtowniami",
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=7.2",
+        "nicolab/php-ftp-client": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kc_Hurtownie\\": "includes/"
+        }
+    }
+}
