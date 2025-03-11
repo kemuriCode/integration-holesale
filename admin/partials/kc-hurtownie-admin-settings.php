@@ -3,7 +3,7 @@
  * Szablon strony ustawień wtyczki
  *
  * @link       https://kemuri.codes
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Kc_Hurtownie
  * @subpackage Kc_Hurtownie/admin/partials
@@ -20,6 +20,25 @@ error_log('Aktualne ustawienia: ' . print_r($settings, true));
 
 <div class="wrap">
     <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+
+    <?php if (isset($_GET['settings-updated'])): ?>
+        <div class="notice notice-success is-dismissible">
+            <p><?php _e('Ustawienia zostały zapisane.', 'kc-hurtownie'); ?></p>
+        </div>
+    <?php endif; ?>
+
+    <?php
+    // Sprawdź, czy AXPOL jest skonfigurowany
+    $is_axpol_configured = isset($settings['hurtownia1_ftp_host']) && strpos($settings['hurtownia1_ftp_host'], 'axpol.com.pl') !== false;
+
+    // Pokaż ostrzeżenie tylko jeśli AXPOL jest skonfigurowany i brakuje rozszerzenia SSH2
+    if ($is_axpol_configured && !function_exists('ssh2_connect')):
+        ?>
+        <div class="notice notice-warning is-dismissible">
+            <p><?php _e('Uwaga: Rozszerzenie SSH2 dla PHP nie jest dostępne. Połączenie SFTP z AXPOL nie będzie działać. Skontaktuj się z administratorem serwera, aby zainstalować rozszerzenie ssh2 dla PHP.', 'kc-hurtownie'); ?>
+            </p>
+        </div>
+    <?php endif; ?>
 
     <form method="post" action="options.php">
         <?php
@@ -39,6 +58,7 @@ error_log('Aktualne ustawienia: ' . print_r($settings, true));
             <a href="#tab-par" class="nav-tab">PAR</a>
             <a href="#tab-inspirion" class="nav-tab">Inspirion</a>
             <a href="#tab-macma" class="nav-tab">Macma</a>
+            <a href="#tab-malfini" class="nav-tab">Malfini</a>
             <a href="#tab-settings" class="nav-tab">Ustawienia importu</a>
         </h2>
 
@@ -70,6 +90,12 @@ error_log('Aktualne ustawienia: ' . print_r($settings, true));
                             value="<?php echo isset($settings['hurtownia1_ftp_host']) ? esc_attr($settings['hurtownia1_ftp_host']) : ''; ?>"
                             class="regular-text">
                         <p class="description">Adres serwera FTP, np. ftp.example.com</p>
+                        <?php if (isset($settings['hurtownia1_ftp_host']) && strpos($settings['hurtownia1_ftp_host'], 'axpol.com.pl') !== false): ?>
+                            <div class="notice notice-info inline">
+                                <p><strong>Informacja dla AXPOL:</strong> Połączenie z AXPOL zostało zaktualizowane do SFTP
+                                    (port 2223) zgodnie z nowymi wymaganiami. Nie musisz nic zmieniać w ustawieniach.</p>
+                            </div>
+                        <?php endif; ?>
                     </td>
                 </tr>
                 <tr>
@@ -217,7 +243,8 @@ error_log('Aktualne ustawienia: ' . print_r($settings, true));
                 <tr>
                     <th scope="row">Test połączenia FTP</th>
                     <td>
-                        <button type="button" id="test-ftp-connection-2" class="button" data-hurtownia="hurtownia2">Testuj
+                        <button type="button" id="test-ftp-connection-2" class="button"
+                            data-hurtownia="hurtownia2">Testuj
                             połączenie FTP</button>
                         <div id="ftp-test-results-2" style="margin-top: 10px; display: none;"></div>
                     </td>
@@ -289,13 +316,15 @@ error_log('Aktualne ustawienia: ' . print_r($settings, true));
                         <input type="text" name="kc_hurtownie_settings[hurtownia3_local_path]"
                             value="<?php echo isset($settings['hurtownia3_local_path']) ? esc_attr($settings['hurtownia3_local_path']) : 'par'; ?>"
                             class="regular-text">
-                        <p class="description">Nazwa katalogu w uploads, gdzie będą przechowywane pliki (bez ukośników)</p>
+                        <p class="description">Nazwa katalogu w uploads, gdzie będą przechowywane pliki (bez ukośników)
+                        </p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Pobierz pełny katalog</th>
                     <td>
-                        <button type="button" id="download-par-products" class="button" data-hurtownia="hurtownia3">Pobierz pełny katalog produktów</button>
+                        <button type="button" id="download-par-products" class="button"
+                            data-hurtownia="hurtownia3">Pobierz pełny katalog produktów</button>
                         <div id="download-results-3" style="margin-top: 10px; display: none;"></div>
                         <p class="description">Uwaga: Pobieranie pełnego katalogu może potrwać kilka minut.</p>
                     </td>
@@ -427,6 +456,75 @@ error_log('Aktualne ustawienia: ' . print_r($settings, true));
                         <button type="button" id="test-api-connection-5" class="button"
                             data-hurtownia="hurtownia5">Testuj połączenie API</button>
                         <div id="api-test-results-5" style="margin-top: 10px; display: none;"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="tab-malfini" class="tab-content" style="display: none;">
+            <h3>Ustawienia Malfini</h3>
+            <table class="form-table">
+                <tr>
+                    <th scope="row">Włącz integrację</th>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="kc_hurtownie_settings[hurtownia6_enabled]" value="1" <?php checked(isset($settings['hurtownia6_enabled']) && $settings['hurtownia6_enabled'] == '1'); ?>>
+                            Zaznacz, aby włączyć integrację z hurtownią Malfini
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Nazwa hurtowni</th>
+                    <td>
+                        <input type="text" name="kc_hurtownie_settings[hurtownia6_name]"
+                            value="<?php echo isset($settings['hurtownia6_name']) ? esc_attr($settings['hurtownia6_name']) : 'Malfini'; ?>"
+                            class="regular-text">
+                        <p class="description">Nazwa hurtowni wyświetlana w panelu administracyjnym</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Adres API</th>
+                    <td>
+                        <input type="text" name="kc_hurtownie_settings[hurtownia6_api_url]"
+                            value="<?php echo isset($settings['hurtownia6_api_url']) ? esc_attr($settings['hurtownia6_api_url']) : 'https://api.malfini.com'; ?>"
+                            class="regular-text">
+                        <p class="description">Bazowy adres API Malfini</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Nazwa użytkownika</th>
+                    <td>
+                        <input type="text" name="kc_hurtownie_settings[hurtownia6_username]"
+                            value="<?php echo isset($settings['hurtownia6_username']) ? esc_attr($settings['hurtownia6_username']) : ''; ?>"
+                            class="regular-text">
+                        <p class="description">Nazwa użytkownika do logowania w Malfini</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Hasło</th>
+                    <td>
+                        <input type="password" name="kc_hurtownie_settings[hurtownia6_password]"
+                            value="<?php echo isset($settings['hurtownia6_password']) ? esc_attr($settings['hurtownia6_password']) : ''; ?>"
+                            class="regular-text">
+                        <p class="description">Hasło do logowania w Malfini</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Ścieżka lokalna</th>
+                    <td>
+                        <input type="text" name="kc_hurtownie_settings[hurtownia6_local_path]"
+                            value="<?php echo isset($settings['hurtownia6_local_path']) ? esc_attr($settings['hurtownia6_local_path']) : 'kc-hurtownie/malfini'; ?>"
+                            class="regular-text">
+                        <p class="description">Nazwa katalogu w uploads, gdzie będą przechowywane pliki (bez ukośników)
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Test połączenia API</th>
+                    <td>
+                        <button type="button" id="test-api-connection-6" class="button"
+                            data-hurtownia="hurtownia6">Testuj połączenie API</button>
+                        <div id="api-test-results-6" style="margin-top: 10px; display: none;"></div>
                     </td>
                 </tr>
             </table>

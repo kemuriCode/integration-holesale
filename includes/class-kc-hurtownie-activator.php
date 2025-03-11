@@ -4,7 +4,7 @@
  * Fired during plugin activation
  *
  * @link       https://kemuri.codes
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Kc_Hurtownie
  * @subpackage Kc_Hurtownie/includes
@@ -15,7 +15,7 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      1.0.0
+ * @since      1.0.1
  * @package    Kc_Hurtownie
  * @subpackage Kc_Hurtownie/includes
  * @author     Marcin Dymek <contact@kemuri.codes>
@@ -28,7 +28,7 @@ class Kc_Hurtownie_Activator
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public static function activate()
 	{
@@ -69,7 +69,13 @@ class Kc_Hurtownie_Activator
 			'hurtownia4_ftp_host' => 'ftp.inspirion.pl', // bez http://
 			'hurtownia4_ftp_user' => '',
 			'hurtownia4_ftp_pass' => '',
-			'hurtownia4_ftp_path' => '/'
+			'hurtownia4_ftp_path' => '/',
+
+			// Malfini - używa REST API
+			'hurtownia6_enabled' => '0',
+			'hurtownia6_api_url' => 'https://api.malfini.com', // używa https:// bo to API
+			'hurtownia6_username' => '',
+			'hurtownia6_password' => '',
 		);
 
 		// Dodaj brakujące ustawienia
@@ -85,7 +91,7 @@ class Kc_Hurtownie_Activator
 	/**
 	 * Tworzy katalogi dla plików hurtowni
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	private static function create_directories()
 	{
@@ -100,7 +106,8 @@ class Kc_Hurtownie_Activator
 			'hurtownia1_local_path' => 'kc-hurtownie/axpol',
 			'hurtownia2_local_path' => 'kc-hurtownie/macma',
 			'hurtownia3_local_path' => 'kc-hurtownie/par',
-			'hurtownia4_local_path' => 'kc-hurtownie/inspirion'
+			'hurtownia4_local_path' => 'kc-hurtownie/inspirion',
+			'hurtownia6_local_path' => 'kc-hurtownie/malfini'
 		);
 
 		// Utwórz katalog główny

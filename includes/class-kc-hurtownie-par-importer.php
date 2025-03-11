@@ -4,7 +4,7 @@
  * Klasa odpowiedzialna za import produktów z hurtowni PAR
  *
  * @link       https://kemuri.codes
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Kc_Hurtownie
  * @subpackage Kc_Hurtownie/includes
@@ -22,7 +22,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Ustawienia importera
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      array    $settings    Ustawienia importera
      */
@@ -31,7 +31,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Licznik zaimportowanych produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $imported_count    Licznik zaimportowanych produktów
      */
@@ -40,7 +40,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Licznik zaktualizowanych produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $updated_count    Licznik zaktualizowanych produktów
      */
@@ -49,7 +49,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Licznik pominiętych produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $skipped_count    Licznik pominiętych produktów
      */
@@ -58,7 +58,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Licznik błędów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $error_count    Licznik błędów
      */
@@ -67,7 +67,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Całkowita liczba produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $total_count    Całkowita liczba produktów
      */
@@ -76,7 +76,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Konstruktor
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $settings    Ustawienia importera
      */
     public function __construct($settings)
@@ -87,7 +87,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Importuje produkty z hurtowni PAR
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   array    Wyniki importu
      */
     public function import()
@@ -151,7 +151,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Pobiera dane produktów z API
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   array|false    Dane produktów lub false w przypadku błędu
      */
     private function get_products_data()
@@ -245,7 +245,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Pobiera dane kategorii z API
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   array|false    Dane kategorii lub false w przypadku błędu
      */
     private function get_categories_data()
@@ -319,7 +319,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Pobiera dane stanów magazynowych z API
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   array|false    Dane stanów magazynowych lub false w przypadku błędu
      */
     private function get_stocks_data()
@@ -400,7 +400,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Importuje kategorie produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $categories    Dane kategorii
      */
     private function import_categories($categories)
@@ -413,7 +413,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Importuje pojedynczą kategorię
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $category    Dane kategorii
      * @return   int                   ID kategorii w WooCommerce
      */
@@ -451,7 +451,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Pobiera ID kategorii WooCommerce na podstawie ID kategorii z hurtowni
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $category_id    ID kategorii z hurtowni
      * @return   int                       ID kategorii w WooCommerce
      */
@@ -471,7 +471,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Importuje pojedynczy produkt
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $product_data    Dane produktu
      * @param    array    $categories_data Dane kategorii
      * @param    array    $stocks_data     Dane stanów magazynowych
@@ -526,7 +526,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Pobiera produkt na podstawie SKU
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $sku    SKU produktu
      * @return   int               ID produktu lub 0
      */
@@ -546,7 +546,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Tworzy nowy produkt
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $name           Nazwa produktu
      * @param    string    $sku            SKU produktu
      * @param    string    $description    Opis produktu
@@ -605,7 +605,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Aktualizuje istniejący produkt
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    int       $product_id     ID produktu
      * @param    string    $name           Nazwa produktu
      * @param    string    $description    Opis produktu
@@ -660,7 +660,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Importuje zdjęcia produktu
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    int      $product_id    ID produktu
      * @param    array    $images        Tablica z URL-ami zdjęć
      */
@@ -695,7 +695,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Pobiera zdjęcie z URL i dodaje je do biblioteki mediów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $url           URL zdjęcia
      * @param    int       $product_id    ID produktu
      * @return   int|false                ID załącznika lub false w przypadku błędu
@@ -740,7 +740,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Konwertuje obiekt SimpleXMLElement na tablicę
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    SimpleXMLElement    $xml    Obiekt XML
      * @return   array                       Tablica z danymi
      */
@@ -754,7 +754,7 @@ class Kc_Hurtownie_Par_Importer
     /**
      * Pobiera dane zdjęć produktu
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $product_sku    SKU produktu
      * @return   array                     Tablica z URL-ami zdjęć
      */

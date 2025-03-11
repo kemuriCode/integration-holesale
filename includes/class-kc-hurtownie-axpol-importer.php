@@ -4,7 +4,7 @@
  * Klasa odpowiedzialna za import produktów z hurtowni AXPOL
  *
  * @link       https://kemuri.codes
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Kc_Hurtownie
  * @subpackage Kc_Hurtownie/includes
@@ -22,7 +22,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Ustawienia importera
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      array    $settings    Ustawienia importera
      */
@@ -31,7 +31,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Licznik zaimportowanych produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $imported_count    Licznik zaimportowanych produktów
      */
@@ -40,7 +40,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Licznik zaktualizowanych produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $updated_count    Licznik zaktualizowanych produktów
      */
@@ -49,7 +49,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Licznik pominiętych produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $skipped_count    Licznik pominiętych produktów
      */
@@ -58,7 +58,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Licznik błędów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $error_count    Licznik błędów
      */
@@ -67,7 +67,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Całkowita liczba produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $total_count    Całkowita liczba produktów
      */
@@ -76,7 +76,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Inicjalizacja klasy
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $settings    Ustawienia importera
      */
     public function __construct($settings)
@@ -87,7 +87,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Importuje produkty z hurtowni AXPOL
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   array    Wyniki importu
      */
     public function import()
@@ -150,7 +150,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Pobiera dane produktów z FTP
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   array|false    Dane produktów lub false w przypadku błędu
      */
     private function get_products_data()
@@ -211,7 +211,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Pobiera dane stanów magazynowych z FTP
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   array|false    Dane stanów magazynowych lub false w przypadku błędu
      */
     private function get_stocks_data()
@@ -272,7 +272,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Pobiera dane zdjęć z FTP
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $product_sku    SKU produktu
      * @return   array                     Tablica z URL-ami zdjęć
      */
@@ -342,7 +342,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Parsuje dane XML
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $xml_data    Dane XML
      * @return   array|false    Tablica produktów lub false w przypadku błędu
      */
@@ -399,7 +399,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Importuje pojedynczy produkt
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $product_data    Dane produktu
      */
     private function import_product($product_data)
@@ -423,7 +423,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Tworzy nowy produkt
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $product_data    Dane produktu
      */
     private function create_product($product_data)
@@ -479,7 +479,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Aktualizuje istniejący produkt
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    int      $product_id      ID produktu
      * @param    array    $product_data    Dane produktu
      */
@@ -533,7 +533,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Dodaje kategorie do produktu
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    int      $product_id    ID produktu
      * @param    array    $categories    Kategorie produktu
      */
@@ -571,7 +571,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Pobiera zdjęcia produktu z serwera FTP i dodaje je do produktu
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    int      $product_id    ID produktu
      * @param    array    $images        Tablica z nazwami plików zdjęć
      */
@@ -681,7 +681,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Dodaje zdjęcie do biblioteki mediów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $file_path     Ścieżka do pliku
      * @param    string    $file_name     Nazwa pliku
      * @param    int       $product_id    ID produktu
@@ -725,7 +725,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Konwertuje obiekt SimpleXML na tablicę
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    SimpleXMLElement    $xml    Obiekt SimpleXML
      * @return   array                       Tablica z danymi
      */
@@ -739,7 +739,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Pobiera plik produktów z serwera FTP
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   bool    Czy pobieranie się powiodło
      */
     private function download_products_file()
@@ -781,7 +781,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Pobiera plik stanów magazynowych z serwera FTP
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   bool    Czy pobieranie się powiodło
      */
     private function download_stocks_file()
@@ -823,7 +823,7 @@ class Kc_Hurtownie_Axpol_Importer
     /**
      * Pobiera zdjęcia produktu
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $product_data    Dane produktu
      * @return   array                     Lista ścieżek do zdjęć
      */

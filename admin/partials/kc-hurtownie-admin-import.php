@@ -3,7 +3,7 @@
  * Szablon strony importu produktów
  *
  * @link       https://kemuri.codes
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Kc_Hurtownie
  * @subpackage Kc_Hurtownie/admin/partials
@@ -51,6 +51,10 @@ $settings = get_option('kc_hurtownie_settings', array());
                             <?php if (isset($settings['hurtownia5_enabled']) && $settings['hurtownia5_enabled'] == '1'): ?>
                                 <option value="hurtownia5"><?php echo esc_html(isset($settings['hurtownia5_name']) && !empty($settings['hurtownia5_name']) ? $settings['hurtownia5_name'] : 'Macma'); ?></option>
                             <?php endif; ?>
+                            
+                            <?php if (isset($settings['hurtownia6_enabled']) && $settings['hurtownia6_enabled'] == '1'): ?>
+                                <option value="hurtownia6"><?php echo esc_html(isset($settings['hurtownia6_name']) && !empty($settings['hurtownia6_name']) ? $settings['hurtownia6_name'] : 'Malfini'); ?></option>
+                            <?php endif; ?>
                         </select>
                     </td>
                 </tr>
@@ -95,10 +99,11 @@ $settings = get_option('kc_hurtownie_settings', array());
         <div id="kc-hurtownie-import-results" style="display: none;">
             <h3>Wyniki importu</h3>
             <div class="import-summary">
-                <p>Zaimportowano: <span id="imported-count">0</span> produktów</p>
-                <p>Zaktualizowano: <span id="updated-count">0</span> produktów</p>
-                <p>Pominięto: <span id="skipped-count">0</span> produktów</p>
-                <p>Błędy: <span id="error-count">0</span></p>
+                <p>Całkowita liczba produktów: <span id="kc-hurtownie-import-total">0</span></p>
+                <p>Zaimportowano: <span id="kc-hurtownie-import-imported">0</span> produktów</p>
+                <p>Zaktualizowano: <span id="kc-hurtownie-import-updated">0</span> produktów</p>
+                <p>Pominięto: <span id="kc-hurtownie-import-skipped">0</span> produktów</p>
+                <p>Błędy: <span id="kc-hurtownie-import-errors">0</span></p>
             </div>
             <div class="import-details"></div>
         </div>

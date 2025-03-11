@@ -4,7 +4,7 @@
  * The admin-specific functionality of the plugin.
  *
  * @link       https://kemuri.codes
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Kc_Hurtownie
  * @subpackage Kc_Hurtownie/admin
@@ -26,7 +26,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -35,7 +35,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -44,7 +44,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -59,7 +59,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_styles()
 	{
@@ -83,7 +83,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function enqueue_scripts()
 	{
@@ -107,7 +107,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Dodaje menu administracyjne dla wtyczki.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function add_plugin_admin_menu()
 	{
@@ -146,7 +146,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Wyświetla główną stronę wtyczki
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function display_plugin_admin_page()
 	{
@@ -156,7 +156,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Wyświetla stronę ustawień wtyczki
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function display_plugin_admin_settings_page()
 	{
@@ -166,7 +166,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Wyświetla stronę importu produktów
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function display_plugin_admin_import_page()
 	{
@@ -176,7 +176,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Rejestruje ustawienia wtyczki
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function register_settings()
 	{
@@ -237,7 +237,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Inicjalizuje zadania cron dla importu produktów.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function setup_cron_jobs()
 	{
@@ -262,7 +262,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Pobiera dane produktów z FTP hurtowni.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @param    string    $hurtownia_id    ID hurtowni.
 	 * @return   mixed                      Dane XML lub false w przypadku błędu.
 	 */
@@ -324,7 +324,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Pobiera obrazek produktu z FTP hurtowni.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @param    string    $hurtownia_id    ID hurtowni.
 	 * @param    string    $image_path      Ścieżka do obrazka.
 	 * @return   string                     Ścieżka do pobranego obrazka lub pusty string.
@@ -378,7 +378,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Importuje produkty z wybranej hurtowni.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @param    string    $hurtownia_id    ID hurtowni.
 	 * @return   array                      Wyniki importu.
 	 */
@@ -420,6 +420,11 @@ class Kc_Hurtownie_Admin
 			require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-kc-hurtownie-macma-importer.php';
 			$importer = new Kc_Hurtownie_Macma_Importer($settings);
 			return $importer->import();
+		} elseif ($hurtownia_id === 'hurtownia6') {
+			// Obsługa importu z hurtowni Malfini
+			require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-kc-hurtownie-malfini-importer.php';
+			$importer = new Kc_Hurtownie_Malfini_Importer($settings);
+			return $importer->import();
 		} else {
 			return array(
 				'success' => false,
@@ -431,7 +436,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Tworzy atrybut produktu.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @param    string    $name     Nazwa atrybutu.
 	 * @param    string    $value    Wartość atrybutu.
 	 * @return   object              Obiekt atrybutu.
@@ -450,7 +455,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Pobiera lub tworzy kategorię produktu.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @param    string    $name        Nazwa kategorii.
 	 * @param    int       $parent_id   ID kategorii nadrzędnej.
 	 * @return   int                    ID kategorii.
@@ -483,7 +488,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Wgrywa obrazek do biblioteki mediów.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 * @param    string    $file_path    Ścieżka do pliku.
 	 * @param    string    $title        Tytuł obrazka.
 	 * @return   int                     ID obrazka.
@@ -530,7 +535,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Obsługuje żądanie AJAX importu produktów.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function handle_ajax_import()
 	{
@@ -563,7 +568,11 @@ class Kc_Hurtownie_Admin
 			$last_import[$hurtownia_id] = time();
 			update_option($this->plugin_name . '-last-import', $last_import);
 
-			wp_send_json_success($result['data']);
+			// Logowanie dla debugowania
+			error_log('Malfini import - struktura odpowiedzi: ' . print_r($result, true));
+
+			// Zwróć całą strukturę odpowiedzi, aby JavaScript mógł obsłużyć różne formaty
+			wp_send_json_success($result);
 		} else {
 			wp_send_json_error($result['message']);
 		}
@@ -572,7 +581,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Rejestruje hooki dla wtyczki.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function register_hooks()
 	{
@@ -597,7 +606,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Importuje produkty przez zadanie cron.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function cron_import_products()
 	{
@@ -644,6 +653,13 @@ class Kc_Hurtownie_Admin
 			}
 		}
 
+		if (isset($settings['hurtownia6_enabled']) && $settings['hurtownia6_enabled']) {
+			$result = $this->import_products('hurtownia6');
+			if ($result['success']) {
+				$last_import['hurtownia6'] = time();
+			}
+		}
+
 		// Zapisz czasy ostatnich importów
 		update_option($this->plugin_name . '-last-import', $last_import);
 	}
@@ -651,7 +667,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Inicjalizuje wtyczkę.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function init()
 	{
@@ -760,7 +776,7 @@ class Kc_Hurtownie_Admin
 	/**
 	 * Testuje połączenie API
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.1
 	 */
 	public function test_api_connection()
 	{
@@ -842,57 +858,39 @@ class Kc_Hurtownie_Admin
 				'file' => $filename
 			));
 		} elseif ($hurtownia_id === 'hurtownia5') { // Macma
-			// Sprawdź, czy hurtownia jest skonfigurowana
-			if (!isset($settings['hurtownia5_api_url']) || empty($settings['hurtownia5_api_url'])) {
+			// Sprawdź konfigurację
+			if (empty($settings['hurtownia5_api_url'])) {
 				wp_send_json_error('Hurtownia Macma nie jest skonfigurowana');
 				return;
 			}
 
-			// Przygotuj katalog lokalny
-			$local_dir = $upload_dir['basedir'] . '/' . (isset($settings['hurtownia5_local_path']) ? $settings['hurtownia5_local_path'] : 'macma');
-			if (!file_exists($local_dir)) {
-				wp_mkdir_p($local_dir);
-			}
-
-			// Pobierz dane API
-			$api_url = $settings['hurtownia5_api_url'];
-
-			// Testuj połączenie z API Macma
-			$test_url = rtrim($api_url, '/') . '/stocks.xml';
+			// Użyj mniejszego pliku do testu - categories.xml
+			$test_url = rtrim($settings['hurtownia5_api_url'], '/') . '/categories.xml';
 
 			// Przygotuj argumenty żądania
 			$args = array(
 				'timeout' => 120,
 				'sslverify' => false,
-				'redirection' => 5,
 				'httpversion' => '1.1',
 				'user-agent' => 'WordPress/' . get_bloginfo('version') . '; ' . get_bloginfo('url')
 			);
 
-			// Wykonaj żądanie
+			// Wykonaj zapytanie
 			$response = wp_remote_get($test_url, $args);
 
-			// Sprawdź, czy wystąpił błąd
 			if (is_wp_error($response)) {
-				wp_send_json_error('Błąd połączenia z API: ' . $response->get_error_message());
+				wp_send_json_error('Błąd połączenia: ' . $response->get_error_message());
 				return;
 			}
 
-			// Sprawdź kod odpowiedzi
-			$response_code = wp_remote_retrieve_response_code($response);
-			if ($response_code !== 200) {
-				wp_send_json_error('Błąd API: ' . $response_code . ' ' . wp_remote_retrieve_response_message($response));
-				return;
-			}
-
-			// Pobierz treść odpowiedzi
+			// Sprawdź, czy otrzymaliśmy poprawną odpowiedź
 			$body = wp_remote_retrieve_body($response);
 			if (empty($body)) {
-				wp_send_json_error('Pusta odpowiedź z API.');
+				wp_send_json_error('Otrzymano pustą odpowiedź z API');
 				return;
 			}
 
-			// Sprawdź, czy odpowiedź jest poprawnym XML
+			// Sprawdź, czy odpowiedź to poprawny XML
 			libxml_use_internal_errors(true);
 			$xml = simplexml_load_string($body);
 			if (!$xml) {
@@ -906,16 +904,140 @@ class Kc_Hurtownie_Admin
 				return;
 			}
 
-			// Zapisz plik lokalnie
-			file_put_contents($local_dir . '/stocks.xml', $body);
+			// Wszystko OK
+			wp_send_json_success('Połączenie z API Macma działa poprawnie');
+		} elseif ($hurtownia_id === 'hurtownia6') { // Malfini
+			// Sprawdź konfigurację
+			if (empty($settings['hurtownia6_api_url']) || empty($settings['hurtownia6_username']) || empty($settings['hurtownia6_password'])) {
+				wp_send_json_error('Hurtownia Malfini nie jest skonfigurowana. Sprawdź ustawienia API, nazwę użytkownika i hasło.');
+				return;
+			}
+
+			// Przygotuj URL do autoryzacji
+			$api_url = rtrim($settings['hurtownia6_api_url'], '/');
+			$auth_url = $api_url . '/api/v4/api-auth/login';
+
+			// Przygotuj dane do autoryzacji
+			$auth_data = array(
+				'username' => $settings['hurtownia6_username'],
+				'password' => $settings['hurtownia6_password']
+			);
+
+			// Zapisz informacje diagnostyczne
+			error_log('Testowanie połączenia z API Malfini');
+			error_log('URL autoryzacji: ' . $auth_url);
+			error_log('Dane autoryzacji: ' . json_encode($auth_data));
+
+			// Wykonaj żądanie autoryzacji
+			$auth_response = wp_remote_post($auth_url, array(
+				'headers' => array(
+					'Content-Type' => 'application/json'
+				),
+				'body' => json_encode($auth_data),
+				'timeout' => 30,
+				'sslverify' => false
+			));
+
+			// Sprawdź, czy wystąpił błąd
+			if (is_wp_error($auth_response)) {
+				$error_message = $auth_response->get_error_message();
+				error_log('Błąd autoryzacji: ' . $error_message);
+				wp_send_json_error('Błąd autoryzacji: ' . $error_message);
+				return;
+			}
+
+			// Pobierz kod odpowiedzi
+			$auth_code = wp_remote_retrieve_response_code($auth_response);
+			if ($auth_code !== 200) {
+				$error_message = 'Błąd autoryzacji: ' . $auth_code . ' ' . wp_remote_retrieve_response_message($auth_response);
+				error_log($error_message);
+				error_log('Odpowiedź: ' . wp_remote_retrieve_body($auth_response));
+				wp_send_json_error($error_message);
+				return;
+			}
+
+			// Pobierz treść odpowiedzi
+			$auth_body = wp_remote_retrieve_body($auth_response);
+			$auth_data = json_decode($auth_body, true);
+
+			// Sprawdź, czy otrzymaliśmy token
+			if (!isset($auth_data['access_token'])) {
+				$error_message = 'Nie otrzymano tokenu z API Malfini';
+				error_log($error_message);
+				error_log('Odpowiedź: ' . $auth_body);
+				wp_send_json_error($error_message . '. Sprawdź dane logowania.');
+				return;
+			}
+
+			// Zapisz informacje o tokenie
+			error_log('Token otrzymany pomyślnie');
+
+			// Użyj tokenu do testowego zapytania o produkty
+			$test_url = $api_url . '/api/v4/product';
+			error_log('URL testu: ' . $test_url);
+
+			// Dodaj parametr language do zapytania
+			$test_url .= '?language=pl';
+
+			$test_response = wp_remote_get($test_url, array(
+				'headers' => array(
+					'Authorization' => 'Bearer ' . $auth_data['access_token'],
+					'Accept' => 'application/json'
+				),
+				'timeout' => 30,
+				'sslverify' => false
+			));
+
+			// Sprawdź, czy wystąpił błąd
+			if (is_wp_error($test_response)) {
+				$error_message = 'Błąd pobierania danych: ' . $test_response->get_error_message();
+				error_log($error_message);
+				wp_send_json_error($error_message);
+				return;
+			}
+
+			// Pobierz kod odpowiedzi
+			$test_code = wp_remote_retrieve_response_code($test_response);
+			if ($test_code !== 200) {
+				$error_message = 'Błąd API: ' . $test_code . ' ' . wp_remote_retrieve_response_message($test_response);
+				error_log($error_message);
+				error_log('Odpowiedź: ' . wp_remote_retrieve_body($test_response));
+				wp_send_json_error($error_message);
+				return;
+			}
+
+			// Pobierz treść odpowiedzi
+			$test_body = wp_remote_retrieve_body($test_response);
+			$test_data = json_decode($test_body, true);
+
+			// Sprawdź, czy otrzymaliśmy dane
+			if (!$test_data) {
+				$error_message = 'Nie otrzymano danych z API Malfini';
+				error_log($error_message);
+				error_log('Odpowiedź: ' . $test_body);
+				wp_send_json_error($error_message);
+				return;
+			}
+
+			// Utwórz katalog dla Malfini, jeśli nie istnieje
+			$local_dir = $upload_dir['basedir'] . '/' . (isset($settings['hurtownia6_local_path']) ? $settings['hurtownia6_local_path'] : 'kc-hurtownie/malfini');
+			if (!file_exists($local_dir)) {
+				wp_mkdir_p($local_dir);
+			}
+
+			// Zapisz przykładowe dane do pliku
+			$sample_file = $local_dir . '/products_sample.json';
+			file_put_contents($sample_file, $test_body);
 
 			// Wszystko OK
+			error_log('Test API Malfini zakończony pomyślnie');
 			wp_send_json_success(array(
-				'message' => 'Połączenie z API Macma nawiązane pomyślnie.',
-				'format' => 'xml'
+				'message' => 'Połączenie z API Malfini działa poprawnie. Autoryzacja i pobieranie danych produktów działa prawidłowo.',
+				'format' => 'json',
+				'file' => 'products_sample.json'
 			));
 		} else {
-			wp_send_json_error('Nieznana hurtownia.');
+			wp_send_json_error('Nieznana hurtownia');
 		}
 	}
 

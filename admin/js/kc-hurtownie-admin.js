@@ -79,14 +79,38 @@
 					if (response.success) {
 						// Pokaż wyniki importu
 						$('#kc-hurtownie-import-results').show();
-						$('#kc-hurtownie-import-total').text(response.data.total);
-						$('#kc-hurtownie-import-imported').text(response.data.imported);
-						$('#kc-hurtownie-import-updated').text(response.data.updated);
-						$('#kc-hurtownie-import-skipped').text(response.data.skipped);
-						$('#kc-hurtownie-import-errors').text(response.data.errors);
+
+						// Sprawdź, czy dane są dostępne
+						console.log('Pełna odpowiedź:', response);
+
+						// Obsługa różnych formatów odpowiedzi
+						var importData = {};
+
+						if (response.data && typeof response.data === 'object') {
+							// Sprawdź, czy dane są w stats czy bezpośrednio w data
+							if (response.data.stats && typeof response.data.stats === 'object') {
+								importData = response.data.stats;
+								console.log('Znaleziono dane w response.data.stats:', importData);
+							} else {
+								importData = response.data;
+								console.log('Znaleziono dane bezpośrednio w response.data:', importData);
+							}
+
+							// Aktualizuj statystyki importu
+							$('#kc-hurtownie-import-total').text(importData.total || 0);
+							$('#kc-hurtownie-import-imported').text(importData.imported || 0);
+							$('#kc-hurtownie-import-updated').text(importData.updated || 0);
+							$('#kc-hurtownie-import-skipped').text(importData.skipped || 0);
+							$('#kc-hurtownie-import-errors').text(importData.errors || 0);
+						} else {
+							console.error('Brak danych w odpowiedzi:', response);
+							alert('Wystąpił błąd podczas importu: Brak danych w odpowiedzi');
+						}
 					} else {
 						// Pokaż komunikat o błędzie
-						alert('Wystąpił błąd podczas importu: ' + response.data);
+						console.error('Błąd importu:', response);
+						var errorMessage = response.data || 'Nieznany błąd';
+						alert('Wystąpił błąd podczas importu: ' + errorMessage);
 					}
 
 					// Odblokuj przycisk
@@ -97,7 +121,17 @@
 					$('#kc-hurtownie-import-progress').hide();
 
 					// Pokaż komunikat o błędzie
-					alert('Wystąpił błąd podczas importu: ' + error);
+					console.error('Błąd AJAX:', xhr, status, error);
+					var errorMessage = '';
+
+					try {
+						var response = JSON.parse(xhr.responseText);
+						errorMessage = response.data || error || 'Nieznany błąd';
+					} catch (e) {
+						errorMessage = error || 'Nieznany błąd';
+					}
+
+					alert('Wystąpił błąd podczas importu: ' + errorMessage);
 
 					// Odblokuj przycisk
 					$('#kc-hurtownie-import-button').prop('disabled', false).text('Rozpocznij import');
@@ -347,6 +381,35 @@
 				},
 				error: function (xhr, status, error) {
 					$('#download-results-3').html('<h4>Wyniki:</h4><div><p style="color: red;">✗ Wystąpił błąd podczas pobierania: ' + error + '</p></div>');
+				}
+			});
+		});
+
+		// Obsługa przycisku testowania połączenia API dla Malfini
+		$('#test-api-connection-6').on('click', function () {
+			var hurtownia_id = $(this).data('hurtownia');
+
+			// Pokaż informację o trwającym teście
+			$('#api-test-results-6').show().html('<p>Trwa testowanie połączenia API Malfini...</p>');
+
+			// Wykonaj żądanie AJAX
+			$.ajax({
+				url: ajaxurl,
+				type: 'POST',
+				data: {
+					action: 'kc_hurtownie_test_api',
+					hurtownia_id: hurtownia_id,
+					nonce: $('#kc_hurtownie_nonce').val()
+				},
+				success: function (response) {
+					if (response.success) {
+						$('#api-test-results-6').html('<h4>Wyniki testu:</h4><div id="api-results-6"><p style="color: green;">✓ ' + response.data.message + '</p><p>Format danych: ' + response.data.format.toUpperCase() + '</p></div>');
+					} else {
+						$('#api-test-results-6').html('<h4>Wyniki testu:</h4><div id="api-results-6"><p style="color: red;">✗ ' + response.data + '</p></div>');
+					}
+				},
+				error: function (xhr, status, error) {
+					$('#api-test-results-6').html('<h4>Wyniki testu:</h4><div id="api-results-6"><p style="color: red;">✗ Wystąpił błąd podczas testowania połączenia: ' + error + '</p></div>');
 				}
 			});
 		});

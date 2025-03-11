@@ -4,7 +4,7 @@
  * Klasa odpowiedzialna za import produktów z hurtowni Inspirion
  *
  * @link       https://kemuri.codes
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Kc_Hurtownie
  * @subpackage Kc_Hurtownie/includes
@@ -22,7 +22,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Ustawienia importera
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      array    $settings    Ustawienia importera
      */
@@ -31,7 +31,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Licznik zaimportowanych produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $imported_count    Licznik zaimportowanych produktów
      */
@@ -40,7 +40,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Licznik zaktualizowanych produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $updated_count    Licznik zaktualizowanych produktów
      */
@@ -49,7 +49,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Licznik pominiętych produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $skipped_count    Licznik pominiętych produktów
      */
@@ -58,7 +58,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Licznik błędów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $error_count    Licznik błędów
      */
@@ -67,7 +67,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Całkowita liczba produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      int    $total_count    Całkowita liczba produktów
      */
@@ -76,7 +76,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Konstruktor
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $settings    Ustawienia importera
      */
     public function __construct($settings)
@@ -87,7 +87,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Importuje produkty z hurtowni Inspirion
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   array    Wyniki importu
      */
     public function import()
@@ -140,7 +140,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Pobiera dane produktów z FTP
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @return   array|false    Dane produktów lub false w przypadku błędu
      */
     private function get_products_data()
@@ -201,7 +201,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Parsuje plik XML
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $file    Ścieżka do pliku XML
      * @return   array|false        Dane z pliku XML lub false w przypadku błędu
      */
@@ -242,7 +242,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Importuje pojedynczy produkt
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $product_data    Dane produktu
      */
     private function import_product($product_data)
@@ -277,7 +277,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Pobiera ID produktu na podstawie SKU
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $sku    SKU produktu
      * @return   int|false         ID produktu lub false jeśli nie znaleziono
      */
@@ -297,7 +297,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Tworzy nowy produkt
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    array    $product_data    Dane produktu
      * @return   int|false                 ID utworzonego produktu lub false w przypadku błędu
      */
@@ -350,7 +350,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Aktualizuje istniejący produkt
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    int      $product_id      ID produktu
      * @param    array    $product_data    Dane produktu
      * @return   int|false                 ID zaktualizowanego produktu lub false w przypadku błędu
@@ -403,7 +403,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Przypisuje kategorie do produktu
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    int      $product_id    ID produktu
      * @param    array    $categories    Kategorie produktu
      */
@@ -432,7 +432,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Importuje zdjęcia produktu
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    int      $product_id    ID produktu
      * @param    array    $images        Zdjęcia produktu
      */
@@ -469,7 +469,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Importuje pojedyncze zdjęcie
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $image_url     URL zdjęcia
      * @param    int       $product_id    ID produktu
      * @return   int|false                ID załącznika lub false w przypadku błędu
@@ -526,7 +526,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Pobiera ID załącznika na podstawie nazwy pliku
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $filename    Nazwa pliku
      * @return   int|false              ID załącznika lub false jeśli nie znaleziono
      */
@@ -546,7 +546,7 @@ class Kc_Hurtownie_Inspirion_Importer
     /**
      * Konwertuje obiekt SimpleXML na tablicę
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    SimpleXMLElement    $xml    Obiekt SimpleXML
      * @return   array                       Tablica z danymi
      */

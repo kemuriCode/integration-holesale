@@ -4,7 +4,7 @@
  * Klasa do obsługi atrybutów produktów
  *
  * @link       https://kemuri.codes
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Kc_Hurtownie
  * @subpackage Kc_Hurtownie/includes
@@ -22,7 +22,7 @@ class Kc_Hurtownie_Attributes
     /**
      * Lista standardowych atrybutów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @access   private
      * @var      array    $standard_attributes    Lista standardowych atrybutów
      */
@@ -45,7 +45,7 @@ class Kc_Hurtownie_Attributes
     /**
      * Inicjalizuje atrybuty produktów
      *
-     * @since    1.0.0
+     * @since    1.0.1
      */
     public function init_attributes()
     {
@@ -68,7 +68,7 @@ class Kc_Hurtownie_Attributes
     /**
      * Tworzy nowy atrybut produktu
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $slug    Slug atrybutu
      * @param    string    $name    Nazwa atrybutu
      * @return   int|false          ID atrybutu lub false w przypadku błędu
@@ -121,7 +121,7 @@ class Kc_Hurtownie_Attributes
     /**
      * Mapuje atrybuty z hurtowni na standardowe atrybuty
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    string    $hurtownia_id       ID hurtowni
      * @param    array     $product_data       Dane produktu
      * @param    array     $attribute_mapping  Mapowanie atrybutów
@@ -191,7 +191,7 @@ class Kc_Hurtownie_Attributes
     /**
      * Dodaje atrybuty do produktu
      *
-     * @since    1.0.0
+     * @since    1.0.1
      * @param    int      $product_id     ID produktu
      * @param    array    $attributes     Atrybuty do dodania
      */
